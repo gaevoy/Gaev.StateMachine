@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Gaev.StateMachine.Tests
 {
@@ -47,9 +48,10 @@ namespace Gaev.StateMachine.Tests
             var delivery = new Delivery();
 
             // When
-            delivery.Handle(new object());
+            TestDelegate act = () => delivery.Handle(new object());
 
             // Then
+            Assert.Catch<NotSupportedException>(act);
             Assert.AreEqual("New", delivery.StateName);
         }
 
@@ -75,9 +77,10 @@ namespace Gaev.StateMachine.Tests
             delivery.Handle(new Delivery.Send());
 
             // When
-            delivery.Handle(new object());
+            TestDelegate act = () => delivery.Handle(new object());
 
             // Then
+            Assert.Catch<NotSupportedException>(act);
             Assert.AreEqual("Sent", delivery.StateName);
         }
 
@@ -90,9 +93,10 @@ namespace Gaev.StateMachine.Tests
             delivery.Handle(new Delivery.Receive());
 
             // When
-            delivery.Handle(new object());
+            TestDelegate act = () => delivery.Handle(new object());
 
             // Then
+            Assert.Catch<NotSupportedException>(act);
             Assert.AreEqual("Received", delivery.StateName);
         }
     }
