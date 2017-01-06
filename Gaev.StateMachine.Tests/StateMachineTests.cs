@@ -50,8 +50,9 @@ namespace Gaev.StateMachine.Tests
             // Given
             var req = new Request { Id = Guid.NewGuid() };
             var it = new StateMachine();
-            it.ReceiveAny(msg =>
+            it.ReceiveAnyAsync(async msg =>
             {
+                await Task.Delay(5);
                 return new Response { Id = ((Request)msg).Id };
             });
 
@@ -68,8 +69,9 @@ namespace Gaev.StateMachine.Tests
             // Given
             var req = new Request { Id = Guid.NewGuid() };
             var it = new StateMachine();
-            it.ReceiveAny(msg =>
+            it.ReceiveAnyAsync(async msg =>
             {
+                await Task.Delay(5);
                 throw new ResponseException(((Request)msg).Id);
             });
 

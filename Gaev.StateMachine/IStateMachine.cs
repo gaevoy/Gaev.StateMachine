@@ -7,6 +7,6 @@ namespace Gaev.StateMachine
     {
         void Become(Action act);
         void ReceiveAsync<TMessage, TResult>(Func<TMessage, Task<TResult>> handler);
-        void ReceiveAny(Func<object, object> handler);
+        void ReceiveAnyAsync(Func<object, Task<object>> handler);
     }
 }

@@ -31,5 +31,23 @@ namespace Gaev.StateMachine
             }
             throw new NotSupportedException();
         }
+
+        public static void ReceiveAny(this IStateMachine it, Func<object, object> handler)
+        {
+            it.ReceiveAnyAsync(msg =>
+            {
+                try
+                {
+                    var result = handler(msg);
+                    if (result == null)
+                        return Void.CompletedObjectTask;
+                    return Task.FromResult(result);
+                }
+                catch (Exception ex)
+                {
+                    return Task.FromException<object>(ex);
+                }
+            });
+        }
     }
 }
