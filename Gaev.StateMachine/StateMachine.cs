@@ -6,21 +6,21 @@ namespace Gaev.StateMachine
 {
     public sealed class StateMachine : IStateMachine
     {
-        private Func<object, Task<object>> _anyHandler = Void.ReturnCompletedObjectTask;
+        private Func<object, Task<object>> _any = Void.ReturnNothingAsync;
         private Dictionary<Type, object> _handlers = new Dictionary<Type, object>();
         public async Task<TResult> HandleAsync<TMessage, TResult>(TMessage msg)
         {
             object handler;
             if (_handlers.TryGetValue(typeof(TMessage), out handler))
                 return await ((Func<TMessage, Task<TResult>>)handler)(msg);
-            return (TResult)await _anyHandler(msg);
+            return (TResult)await _any(msg);
         }
 
-        public void Become(Action act)
+        public void Become(Action state)
         {
-            _anyHandler = Void.ReturnCompletedObjectTask;
+            _any = Void.ReturnNothingAsync;
             _handlers = new Dictionary<Type, object>();
-            act();
+            state();
         }
 
         public void ReceiveAsync<TMessage, TResult>(Func<TMessage, Task<TResult>> handler)
@@ -30,7 +30,7 @@ namespace Gaev.StateMachine
 
         public void ReceiveAnyAsync(Func<object, Task<object>> handler)
         {
-            _anyHandler = handler;
+            _any = handler;
         }
     }
 }
