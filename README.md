@@ -2,7 +2,7 @@
 Akka.NET actor has really useful feature is [switching the behavior](https://codingjourneyman.com/2015/08/24/switching-the-behavior-of-an-akka-net-actor/) using Become() method.
 It inspired me to make simple implementation to use Become() separately outside Akka.NET.
 
-StateMachine can be used via Inheritance (IS-A) see [StateMachineBase](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine/StateMachineBase.cs) or Composition (HAS-A) see example [below](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine.Tests/Delivery.cs#L8).
+StateMachine can be used via Inheritance (IS-A) see [StateMachineBase](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine/StateMachineBase.cs) or Composition (HAS-A) see example [below](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine.Tests/Delivery.cs#L8). StateMachine supports [sync](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine/SyncExt.cs) and [async](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine/IStateMachine.cs) handlers.
 
 See example of usage [here](https://github.com/gaevoy/Gaev.StateMachine/blob/master/Gaev.StateMachine.Tests/Delivery.cs#L6): 
 
