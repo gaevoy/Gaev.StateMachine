@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-
-// ReSharper disable InconsistentNaming
+﻿// ReSharper disable InconsistentNaming
 
 namespace Gaev.StateMachine.Tests
 {
-    public class Delivery : ICanHandle
+    public class Delivery
     {
         private readonly IStateMachine it = new StateMachine();
         public string StateName;
@@ -14,7 +12,7 @@ namespace Gaev.StateMachine.Tests
             it.Become(New);
         }
 
-        public Task<TResult> HandleAsync<TMessage, TResult>(TMessage msg) => it.HandleAsync<TMessage, TResult>(msg);
+        public void Handle<TMessage>(TMessage msg) => it.Handle(msg);
 
         private void New()
         {

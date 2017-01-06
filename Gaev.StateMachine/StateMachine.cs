@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Gaev.StateMachine
 {
-    public class StateMachine : IStateMachine
+    public sealed class StateMachine : IStateMachine
     {
         private Func<object, object> _anyHandler = Void.ReturnNothing;
         private Dictionary<Type, object> _handlers = new Dictionary<Type, object>();

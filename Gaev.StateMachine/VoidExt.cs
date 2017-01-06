@@ -10,9 +10,9 @@ namespace Gaev.StateMachine
             return handler.HandleAsync<TMessage, Void>(msg);
         }
 
-        public static void ReceiveAsync<TMessage>(this IStateMachine sm, Func<TMessage, Task> handler)
+        public static void ReceiveAsync<TMessage>(this IStateMachine it, Func<TMessage, Task> handler)
         {
-            sm.ReceiveAsync<TMessage, Void>(async msg =>
+            it.ReceiveAsync<TMessage, Void>(async msg =>
             {
                 await handler(msg);
                 return Void.Nothing;

@@ -5,9 +5,9 @@ namespace Gaev.StateMachine
 {
     public static class SyncVoidExt
     {
-        public static void Receive<TMessage>(this IStateMachine sm, Action<TMessage> handler)
+        public static void Receive<TMessage>(this IStateMachine it, Action<TMessage> handler)
         {
-            sm.ReceiveAsync<TMessage>(msg =>
+            it.ReceiveAsync<TMessage>(msg =>
             {
                 try
                 {
